@@ -63,8 +63,20 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $post = Posts::find()->all();
-        return $this->render('home', ['p']);
+        $posts = Posts::find()->asArray()->all();
+        return $this->render('home', ['posts' => $posts]);
+    }
+
+    public function actionView($id)
+    {
+        $post = Posts::findOne($id);
+        return $this->render('view', ['post' => $post]);
+    }
+
+    public function actionUpdate($id)
+    {
+        $post = Posts::findOne($id);
+        return $this->render('update', ['post' => $post]);
     }
 
     /**

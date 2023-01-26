@@ -22,17 +22,26 @@ $this->title = 'My Yii Application';
                 </tr>
             </thead>
             <tbody>
-                <tr class="table-active">
-                    <th scope="row">Active</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>
-                        <span><?= Html::a('View') ?></span>
-                        <span><?= Html::a('Update') ?></span>
-                        <span><?= Html::a('Delete') ?></span>
-                    </td>
-                </tr>
+                <?php if(count($posts) > 0): ?>
+                    <?php foreach($posts as $post): ?>
+                        
+                        <tr class="table-active">
+                            <th scope="row"><?php echo $post['id'] ?></th>
+                            <td><?php echo $post['title']; ?></td>
+                            <td><?php echo $post['description']; ?></td>
+                            <td><?php echo $post['category']; ?></td>
+                            <td>
+                                <span><?= Html::a('View', ['view', 'id' => $post['id']], ['class' => 'label label-primary']) ?></span>
+                                <span><?= Html::a('Update', ['update', 'id' => $post['id']], ['class' => 'label label-default']) ?></span>
+                                <span><?= Html::a('Delete', ['delete', 'id' => $post['id']], ['class' => 'label label-danger']) ?></span>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td> No posts fetched </td>
+                    </tr>
+                <?php endif; ?>
             </tbody>
             </table>
         </div>
