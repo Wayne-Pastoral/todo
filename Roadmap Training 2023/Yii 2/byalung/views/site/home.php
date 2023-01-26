@@ -9,6 +9,9 @@ $this->title = 'My Yii Application';
         <h1 class="display-4 p-5">Yii2 Todo list app</h1>
     </div>
 
+    <div class="row">
+        <h1><?= html::a('Create', ['/site/create'], ['class' => 'btn btn-primary']) ?></h1>
+    </div>
     <div class="body-content">
         <div class="row">
         <table class="table table-hover">
